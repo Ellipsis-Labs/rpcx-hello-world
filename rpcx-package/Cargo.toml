@@ -1,0 +1,13 @@
+[package]
+name = "rpcx-package"
+version = { workspace = true }
+edition = "2021"
+
+[dependencies]
+atlas-rpcx-bindings = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+[lib]
+crate-type = ["cdylib"]
+name = "rpcx_package"

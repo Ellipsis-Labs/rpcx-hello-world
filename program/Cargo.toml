@@ -1,0 +1,20 @@
+[package]
+name = "rpcx-hello-world-program"
+edition = "2021"
+version = "0.1.1"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "rpcx_hello_world_program"
+
+[features]
+no-entrypoint = []
+test-sbf = []
+
+[dependencies]
+borsh = { workspace = true }
+solana-program = { workspace = true }
+
+[dev-dependencies]
+solana-sdk = { workspace = true }
+solana-program-test = { workspace = true }
