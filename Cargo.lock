@@ -388,9 +388,9 @@ dependencies = [
 
 [[package]]
 name = "atlas-rpcx-bindings"
-version = "0.0.3"
+version = "0.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d571b85e1f324debe9eaeec8987aab40d870fd1715e1b1fe3ae9f1ad2aae0126"
+checksum = "c0a0e8580a8f9e6b816fb002f9eb8ad3d34ab5778ec0cfa58ecfa4bbd847413e"
 dependencies = [
  "base64 0.22.1",
  "bs58 0.5.1",
