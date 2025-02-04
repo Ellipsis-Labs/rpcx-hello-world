@@ -2,14 +2,13 @@
 
 A simple guide to getting started with rpcX (RPC Extensions) from Ellipsis Labs.
 
+See the [Atlas documentation](https://docs.atlas.xyz/rpc/rpcx/tutorial/custom) for a step-by-step guide to using this repo.
+
 ## Setup
 
-You will need to install the atlas-rpcx CLI tool:
+You will need to install the latest version of the `atlas-rpcX` CLI from the [Atlas release repo](https://github.com/Ellipsis-Labs/atlas-release/releases). Currently only Linux and MacOS are supported.
 
-Get the latest version of the rpcX CLI from the [Atlas release repo](https://github.com/Ellipsis-Labs/atlas-release/releases). 
-Currently only Linux and MacOS are supported.
-
-And setup Rust to properly develop rpcX packages:
+Setup Rust to properly develop rpcX packages:
 ```shell
 cargo install cargo-component
 rustup target add wasm32-wasip1
@@ -22,6 +21,11 @@ version 2.0.24. To build the program, run:
 
 ```shell
 cargo build-sbf
+```
+
+To deploy the program, run:
+```shell
+solana program deploy --fee-payer <PATH_TO_PAYER_KEYPAIR> --program-id <PATH_TO_PROGRAM_KEYPAIR>  --use-rpc  <PATH_TO_PROGRAM_BINARY> --url <RPC_URL>
 ```
 
 ### Script
