@@ -11,7 +11,7 @@ edition = "2021"
 version = "0.1.0"
 
 [workspace.dependencies]
-atlas-rpcx-bindings = "0.0.1"
+atlas-rpcx-bindings = "0.0.3"
 borsh = "0.10.4"
 solana-client = "1.18.26"
 solana-program = "1.18.26"
