@@ -1,6 +1,6 @@
 # RpcX Hello World Program
 
-A simple guide to getting started with rpcX (RPC Extensions) from Ellipsis Labs.
+A simple guide to getting started with rpcX from Ellipsis Labs.
 
 See the [Atlas documentation](https://docs.atlas.xyz/rpc/rpcx/tutorial/custom) for a step-by-step guide to using this repo.
 
