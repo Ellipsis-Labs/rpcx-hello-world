@@ -24,6 +24,14 @@ version 2.0.24. To build the program, run:
 cargo build-sbf
 ```
 
+This should create a `target/deploy` directory with the program's binary.
+
+Make sure there's a generated program ID keypair in the `target/deploy` directory.
+
+```shell
+$ echo $(solana-keygen pubkey target/deploy/rpcx_hello_world_program-keypair.json)
+```
+
 To deploy the program, run:
 
 ```shell
@@ -45,8 +53,12 @@ Run the following command to build the rpcX package:
 
 ```shell
 $ cargo component build --release --manifest-path rpcx-package/Cargo.toml
-Finished `release` profile [optimized] target(s) in 3.21s
-Creating component target/wasm32-wasip1/release/rpcx_package.wasm
+```
+
+Expected output:
+
+```
+    Creating component rpcx-package/target/wasm32-wasip1/release/rpcx_package.wasm
 ```
 
 #### Testing a local rpcX Package
