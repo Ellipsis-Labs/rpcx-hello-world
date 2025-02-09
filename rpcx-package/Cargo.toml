@@ -1,12 +1,11 @@
 [package]
 name = "rpcx-package"
-version = { workspace = true }
 edition = "2021"
 
 [dependencies]
-atlas-rpcx-bindings = { workspace = true }
-serde = { workspace = true }
-serde_json = { workspace = true }
+atlas-rpcx-bindings = "0.0.4"
+serde = { version = "1.0.215", features = ["derive", "rc"] }
+serde_json = "1.0.133"
 
 [lib]
 crate-type = ["cdylib"]

@@ -9,6 +9,7 @@ See the [Atlas documentation](https://docs.atlas.xyz/rpc/rpcx/tutorial/custom) f
 You will need to install the latest version of the `atlas-rpcX` CLI from the [Atlas release repo](https://github.com/Ellipsis-Labs/atlas-release/releases). Currently only Linux and MacOS are supported.
 
 Setup Rust to properly develop rpcX packages:
+
 ```shell
 cargo install cargo-component
 rustup target add wasm32-wasip1
@@ -23,7 +24,16 @@ version 2.0.24. To build the program, run:
 cargo build-sbf
 ```
 
+This should create a `target/deploy` directory with the program's binary.
+
+Make sure there's a generated program ID keypair in the `target/deploy` directory.
+
+```shell
+$ echo $(solana-keygen pubkey target/deploy/rpcx_hello_world_program-keypair.json)
+```
+
 To deploy the program, run:
+
 ```shell
 solana program deploy --fee-payer <PATH_TO_PAYER_KEYPAIR> --program-id <PATH_TO_PROGRAM_KEYPAIR>  --use-rpc  <PATH_TO_PROGRAM_BINARY> --url <RPC_URL>
 ```
@@ -42,12 +52,17 @@ Transaction confirmed: 5Dq9Nc2gHpUTQ6EyP8w7HG53p5E8sG2qSiH1htY7NZvByzYNTPtd4c3bZ
 Run the following command to build the rpcX package:
 
 ```shell
-$ cargo component build --release
-Finished `release` profile [optimized] target(s) in 3.21s
-Creating component target/wasm32-wasip1/release/rpcx_package.wasm
+$ cargo component build --release --manifest-path rpcx-package/Cargo.toml
+```
+
+Expected output:
+
+```
+    Creating component rpcx-package/target/wasm32-wasip1/release/rpcx_package.wasm
 ```
 
 #### Testing a local rpcX Package
+
 To test a local rpcX package use the `atlas-rpcx` CLI tool's `simulate` command:
 
 ```shell
@@ -55,15 +70,15 @@ $ atlas-rpcx simulate --help
 ```
 
 #### Package Deployment
-To deploy the rpcX package:
+
+To deploy the rpcX package from the root directory:
 
 ```shell
-$ atlas-rpcx registry deploy
-Finished `release` profile [optimized] target(s) in 3.21s
-Creating component target/wasm32-wasip1/release/rpcx_package.wasm
+$ atlas-rpcx registry deploy $(target/deploy/rpcx_hello_world_program-keypair.json) rpcx-package/target/wasm32-wasip1/release/rpcx_package.wasm  --url https://testnet.atlas.xyz
 ```
 
 #### Interacting with a deployed rpcX Package
+
 To interact with a deployed rpcX package use the `atlas-rpcx` CLI tool's `query` and `pubsub` commands:
 
 ```shell
