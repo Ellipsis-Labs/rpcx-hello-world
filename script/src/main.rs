@@ -1,5 +1,6 @@
-use std::env;
 use std::str::FromStr;
+
+use clap::{command, Parser};
 
 use solana_client::rpc_client::RpcClient;
 use solana_sdk::instruction::{AccountMeta, Instruction};
@@ -9,22 +10,35 @@ use solana_sdk::signer::Signer;
 use solana_sdk::system_program;
 use solana_sdk::transaction::Transaction;
 
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    /// The program ID to interact with
+    #[arg(long)]
+    program_id: String,
+
+    /// Path to the payer's keypair file. If not provided, uses default Solana CLI keypair
+    #[arg(short, long)]
+    payer: Option<String>,
+
+    /// RPC URL to connect to
+    #[arg(short, long, default_value = "https://testnet.atlas.xyz")]
+    rpc_url: String,
+}
+
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args = Args::parse();
 
-    if args.len() != 4 {
-        println!("Please provide exactly 3 arguments");
-        println!("Usage: cargo run <PROGRAM_ID> <PAYER_KEYPAIR_PATH> <RPC_URL>");
-        return;
-    }
+    let program_id = Pubkey::from_str(&args.program_id)
+        .unwrap_or_else(|_| panic!("Could not parse pubkey: {:?}", args.program_id));
 
-    let program_id = Pubkey::from_str(&args[1])
-        .unwrap_or_else(|_| panic!("Could not parse pubkey: {:?}", args[1]));
-    let payer_path = &args[2];
-    let rpc_url = &args[3];
+    let payer = match args.payer {
+        Some(path) => read_keypair_file(&path).expect("Could not read keypair file"),
+        None => read_keypair_file(&*solana_cli_config::Config::default().keypair_path)
+            .expect("Could not read default keypair file"),
+    };
 
-    let client = RpcClient::new(rpc_url);
-    let payer = read_keypair_file(payer_path).expect("Could not read keypair file");
+    let client = RpcClient::new(args.rpc_url);
     let message_kp = Keypair::new();
     let blockhash = client
         .get_latest_blockhash()

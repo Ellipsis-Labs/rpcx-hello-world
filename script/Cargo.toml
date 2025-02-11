@@ -4,5 +4,7 @@ edition.workspace = true
 version.workspace = true
 
 [dependencies]
-solana-sdk = { workspace = true, features = ["default"] }
+clap = { workspace = true }
 solana-client = { workspace = true }
+solana-cli-config = { workspace = true }
+solana-sdk = { workspace = true, features = ["default"] }
