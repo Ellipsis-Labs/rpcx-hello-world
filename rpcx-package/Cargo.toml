@@ -4,8 +4,8 @@ edition = "2021"
 
 [dependencies]
 atlas-rpcx-bindings = "0.0.4"
-serde = { version = "1.0.215", features = ["derive", "rc"] }
-serde_json = "1.0.133"
+serde = { version = "1.0.217", features = ["derive", "rc"] }
+serde_json = "1.0.138"
 
 [lib]
 crate-type = ["cdylib"]
