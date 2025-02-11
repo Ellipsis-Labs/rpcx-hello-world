@@ -21,6 +21,7 @@ It is recommended that the sample program be built with solana-cli
 version 2.0.24. To build the program, run:
 
 ```shell
+cd program
 cargo build-sbf
 ```
 
@@ -32,10 +33,10 @@ Make sure there's a generated program ID keypair in the `target/deploy` director
 $ echo $(solana-keygen pubkey target/deploy/rpcx_hello_world_program-keypair.json)
 ```
 
-To deploy the program, run:
+To deploy the program, ensure you have a funded local Atlas testnet keypair and run:
 
 ```shell
-solana program deploy --fee-payer <PATH_TO_PAYER_KEYPAIR> --program-id <PATH_TO_PROGRAM_KEYPAIR>  --use-rpc  <PATH_TO_PROGRAM_BINARY> --url <RPC_URL>
+solana program deploy --use-rpc <PATH_TO_PROGRAM_BINARY> --url <RPC_URL>
 ```
 
 ### Script
@@ -43,9 +44,11 @@ solana program deploy --fee-payer <PATH_TO_PAYER_KEYPAIR> --program-id <PATH_TO_
 Run the following command to interact with the hello world program:
 
 ```shell
-$ cargo run <PROGRAM_ID> <PAYER_KEYPAIR_PATH> <RPC_URL>
+$ cargo run -- --program-id <PROGRAM_ID>
 Transaction confirmed: 5Dq9Nc2gHpUTQ6EyP8w7HG53p5E8sG2qSiH1htY7NZvByzYNTPtd4c3bZck4kXteL8CgGwAwKb3JEy69r415r8gK
 ```
+
+You may also provide the arguments `--payer <PAYER_KEYPAIR_PATH>` and `--rpc-url <RPC_URL>` to use a different payer or RPC URL.
 
 ### rpcX Package
 
@@ -58,7 +61,7 @@ $ cargo component build --release --manifest-path rpcx-package/Cargo.toml
 Expected output:
 
 ```
-    Creating component rpcx-package/target/wasm32-wasip1/release/rpcx_package.wasm
+Creating component rpcx-package/target/wasm32-wasip1/release/rpcx_package.wasm
 ```
 
 #### Testing a local rpcX Package
