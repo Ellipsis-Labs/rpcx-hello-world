@@ -1,4 +1,4 @@
-# RpcX Hello World Program
+# rpcX Hello World Program
 
 A simple guide to getting started with rpcX from Ellipsis Labs.
 
@@ -6,7 +6,7 @@ See the [Atlas documentation](https://docs.atlas.xyz/rpc/rpcx/tutorial/custom) f
 
 ## Setup
 
-You will need to install the latest version of the `atlas-rpcX` CLI from the [Atlas release repo](https://github.com/Ellipsis-Labs/atlas-release/releases). Currently only Linux and MacOS are supported.
+You will need to install the latest version of the `atlas-rpcx` CLI from the [Atlas release repo](https://github.com/Ellipsis-Labs/atlas-release/releases). Currently only Linux and MacOS are supported.
 
 Setup Rust to properly develop rpcX packages:
 
@@ -15,17 +15,18 @@ cargo install cargo-component
 rustup target add wasm32-wasip1
 ```
 
+Ensure you have at least `rustc` version `1.81.0` installed.
+
 ### Program
 
-It is recommended that the sample program be built with solana-cli
-version 2.0.24. To build the program, run:
+It is recommended that the sample program be built with `solana-cli` version `2.0.24`. To build the program, run:
 
 ```shell
 cd program
 cargo build-sbf
 ```
 
-This should create a `target/deploy` directory with the program's binary.
+This should create a `target/deploy` directory containing the compiled program binary.
 
 Make sure there's a generated program ID keypair in the `target/deploy` directory.
 
@@ -48,7 +49,7 @@ $ cargo run -- --program-id <PROGRAM_ID>
 Transaction confirmed: 5Dq9Nc2gHpUTQ6EyP8w7HG53p5E8sG2qSiH1htY7NZvByzYNTPtd4c3bZck4kXteL8CgGwAwKb3JEy69r415r8gK
 ```
 
-You may also provide the arguments `--payer <PAYER_KEYPAIR_PATH>` and `--rpc-url <RPC_URL>` to use a different payer or RPC URL.
+You may also provide the arguments `--payer <PAYER_KEYPAIR_PATH>` and `--rpc-url <RPC_URL>` to use a non-default payer or RPC URL.
 
 ### rpcX Package
 
